@@ -155,3 +155,17 @@ INSERT INTO [USER] VALUES ('')
      <ComboBoxItem Content="Bob"/>
      <ComboBoxItem Content="Charlie"/>
  </ComboBox>
+------------------------------
+using QRCoder;
+using System.Windows.Media.Imaging
+
+var generator = new QRCodeGenerator();
+var code = generator.CreateQrCode("", QRCodeGenerator.ECCLevel.H);
+var image = new PngByteQRCode(code);
+
+var qrCodeImage = image.GetGraphic(40);
+
+var bitmap = new BitmapImage();
+bitmap.BeginInit();
+bitmap.StreamSource = new MemoryStream(qrCodeImage);
+bitmap.EndInit();
